@@ -1,7 +1,7 @@
 package vecf64
 
-// RangeFloat is inclusive of Start AND End
-func RangeFloat64(start, end int) []float64 {
+// Range is inclusive of Start AND End
+func Range(start, end int) []float64 {
 	size := end - start
 	incr := true
 	if start > end {

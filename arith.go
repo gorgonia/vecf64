@@ -2,7 +2,7 @@ package vecf64
 
 import "math"
 
-// Pow performs a^b elementwise
+// Pow performs  a̅ ^ b̅ elementwise
 func Pow(a, b []float64) {
 	for i, v := range a {
 		switch b[i] {
@@ -62,7 +62,7 @@ func PowerFrom(s float64, a []float64) {
 	}
 }
 
-// Max takes two slices, and compares them elementwise. The highest value is put into a
+// Max takes two slices, a̅ + b̅, and compares them elementwise. The highest value is put into a̅.
 func Max(a, b []float64) {
 	if len(a) != len(b) {
 		panic("Index error")
@@ -79,7 +79,7 @@ func Max(a, b []float64) {
 	}
 }
 
-// Min takes two slices, and compares them elementwise. The lowest value is put into a
+// Min takes two slices, a̅ + b̅ and compares them elementwise. The lowest value is put into a̅.
 func Min(a, b []float64) {
 	if len(a) != len(b) {
 		panic("Index error")
@@ -98,6 +98,7 @@ func Min(a, b []float64) {
 
 /* REDUCTION RELATED */
 
+// Sum sums a slice of float64 and returns a float64
 func Sum(a []float64) float64 {
 	return Reduce(add, float64(0), a...)
 }
@@ -180,10 +181,10 @@ func Argmin(a []float64) int {
 
 var (
 	add = func(a, b float64) float64 { return a + b }
-	sub = func(a, b float64) float64 { return a - b }
-	mul = func(a, b float64) float64 { return a * b }
-	div = func(a, b float64) float64 { return a / b }
-	mod = func(a, b float64) float64 { return math.Mod(a, b) }
+	// sub = func(a, b float64) float64 { return a - b }
+	// mul = func(a, b float64) float64 { return a * b }
+	// div = func(a, b float64) float64 { return a / b }
+	// mod = func(a, b float64) float64 { return math.Mod(a, b) }
 
 	min = func(a, b float64) float64 {
 		if a < b {

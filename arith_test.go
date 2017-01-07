@@ -20,9 +20,9 @@ const (
 func TestAdd(t *testing.T) {
 	assert := assert.New(t)
 
-	a := RangeFloat64(0, niceprime-1)
+	a := Range(0, niceprime-1)
 
-	correct := RangeFloat64(0, niceprime-1)
+	correct := Range(0, niceprime-1)
 	for i := range correct {
 		correct[i] = correct[i] + correct[i]
 	}
@@ -30,7 +30,7 @@ func TestAdd(t *testing.T) {
 	Add(a, a)
 	assert.Equal(correct, a)
 
-	b := RangeFloat64(niceprime, 2*niceprime-1)
+	b := Range(niceprime, 2*niceprime-1)
 	for i := range correct {
 		correct[i] = a[i] + b[i]
 	}
@@ -40,7 +40,7 @@ func TestAdd(t *testing.T) {
 
 	/* Weird Corner Cases*/
 	for i := 1; i < 65; i++ {
-		a = RangeFloat64(0, i)
+		a = Range(0, i)
 		var testAlign bool
 		addr := &a[0]
 		u := uint(uintptr(unsafe.Pointer(addr)))
@@ -49,7 +49,7 @@ func TestAdd(t *testing.T) {
 		}
 
 		if testAlign {
-			b = RangeFloat64(i, 2*i)
+			b = Range(i, 2*i)
 			correct = make([]float64, i)
 			for j := range correct {
 				correct[j] = b[j] + a[j]
@@ -63,17 +63,13 @@ func TestAdd(t *testing.T) {
 func TestSub(t *testing.T) {
 	assert := assert.New(t)
 
-	a := RangeFloat64(0, niceprime-1)
+	a := Range(0, niceprime-1)
 
-	correct := RangeFloat64(0, niceprime-1)
-	for i := range correct {
-		correct[i] = correct[i] - correct[i]
-	}
-
+	correct := make([]float64, niceprime-1)
 	Sub(a, a)
 	assert.Equal(correct, a)
 
-	b := RangeFloat64(niceprime, 2*niceprime-1)
+	b := Range(niceprime, 2*niceprime-1)
 	for i := range correct {
 		correct[i] = a[i] - b[i]
 	}
@@ -83,7 +79,7 @@ func TestSub(t *testing.T) {
 
 	/* Weird Corner Cases*/
 	for i := 1; i < 65; i++ {
-		a = RangeFloat64(0, i)
+		a = Range(0, i)
 		var testAlign bool
 		addr := &a[0]
 		u := uint(uintptr(unsafe.Pointer(addr)))
@@ -92,7 +88,7 @@ func TestSub(t *testing.T) {
 		}
 
 		if testAlign {
-			b = RangeFloat64(i, 2*i)
+			b = Range(i, 2*i)
 			correct = make([]float64, i)
 			for j := range correct {
 				correct[j] = a[j] - b[j]
@@ -106,16 +102,16 @@ func TestSub(t *testing.T) {
 func TestMul(t *testing.T) {
 	assert := assert.New(t)
 
-	a := RangeFloat64(0, niceprime-1)
+	a := Range(0, niceprime-1)
 
-	correct := RangeFloat64(0, niceprime-1)
+	correct := Range(0, niceprime-1)
 	for i := range correct {
 		correct[i] = correct[i] * correct[i]
 	}
 	Mul(a, a)
 	assert.Equal(correct, a)
 
-	b := RangeFloat64(niceprime, 2*niceprime-1)
+	b := Range(niceprime, 2*niceprime-1)
 	for i := range correct {
 		correct[i] = a[i] * b[i]
 	}
@@ -126,7 +122,7 @@ func TestMul(t *testing.T) {
 	/* Weird Corner Cases*/
 
 	for i := 1; i < 65; i++ {
-		a = RangeFloat64(0, i)
+		a = Range(0, i)
 		var testAlign bool
 		addr := &a[0]
 		u := uint(uintptr(unsafe.Pointer(addr)))
@@ -135,7 +131,7 @@ func TestMul(t *testing.T) {
 		}
 
 		if testAlign {
-			b = RangeFloat64(i, 2*i)
+			b = Range(i, 2*i)
 			correct = make([]float64, i)
 			for j := range correct {
 				correct[j] = a[j] * b[j]
@@ -270,7 +266,7 @@ func TestMaxOf(t *testing.T) {
 	correct := float64(2)
 	got := MaxOf(a)
 	if got != correct {
-		t.Error("Expected %f. Got %v instead", correct, got)
+		t.Errorf("Expected %f. Got %v instead", correct, got)
 	}
 
 	a = []float64{}

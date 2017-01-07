@@ -22,17 +22,17 @@ import (
 func TestDiv(t *testing.T) {
 	assert := assert.New(t)
 
-	a := RangeFloat64(0, niceprime-1)
+	a := Range(0, niceprime-1)
 
-	correct := RangeFloat64(0, niceprime-1)
+	correct := Range(0, niceprime-1)
 	for i := range correct {
-		correct[i] = correct[i] / correct[i]
+		correct[i] = 1
 	}
 	Div(a, a)
 	assert.Equal(correct[1:], a[1:])
 	assert.Equal(true, math.IsInf(a[0], 0), "a[0] is: %v", a[0])
 
-	b := RangeFloat64(niceprime, 2*niceprime-1)
+	b := Range(niceprime, 2*niceprime-1)
 	for i := range correct {
 		correct[i] = a[i] / b[i]
 	}
@@ -44,7 +44,7 @@ func TestDiv(t *testing.T) {
 	/* Weird Corner Cases*/
 
 	for i := 1; i < 65; i++ {
-		a = RangeFloat64(0, i)
+		a = Range(0, i)
 		var testAlign bool
 		addr := &a[0]
 		u := uint(uintptr(unsafe.Pointer(addr)))
@@ -53,7 +53,7 @@ func TestDiv(t *testing.T) {
 		}
 
 		if testAlign {
-			b = RangeFloat64(i, 2*i)
+			b = Range(i, 2*i)
 			correct = make([]float64, i)
 			for j := range correct {
 				correct[j] = a[j] / b[j]
@@ -68,9 +68,9 @@ func TestDiv(t *testing.T) {
 func TestSqrt(t *testing.T) {
 	assert := assert.New(t)
 
-	a := RangeFloat64(0, niceprime-1)
+	a := Range(0, niceprime-1)
 
-	correct := RangeFloat64(0, niceprime-1)
+	correct := Range(0, niceprime-1)
 	for i, v := range correct {
 		correct[i] = math.Sqrt(v)
 	}
@@ -89,7 +89,7 @@ func TestSqrt(t *testing.T) {
 
 	/* Weird Corner Cases*/
 	for i := 1; i < 65; i++ {
-		a = RangeFloat64(0, i)
+		a = Range(0, i)
 		var testAlign bool
 		addr := &a[0]
 		u := uint(uintptr(unsafe.Pointer(addr)))
@@ -111,9 +111,9 @@ func TestSqrt(t *testing.T) {
 func TestInvSqrt(t *testing.T) {
 
 	assert := assert.New(t)
-	a := RangeFloat64(0, niceprime-1)
+	a := Range(0, niceprime-1)
 
-	correct := RangeFloat64(0, niceprime-1)
+	correct := Range(0, niceprime-1)
 	for i, v := range correct {
 		correct[i] = 1.0 / math.Sqrt(v)
 	}
@@ -126,7 +126,7 @@ func TestInvSqrt(t *testing.T) {
 	// Weird Corner Cases
 
 	for i := 1; i < 65; i++ {
-		a = RangeFloat64(0, i)
+		a = Range(0, i)
 		var testAlign bool
 		addr := &a[0]
 		u := uint(uintptr(unsafe.Pointer(addr)))
@@ -140,7 +140,7 @@ func TestInvSqrt(t *testing.T) {
 				correct[j] = 1.0 / math.Sqrt(a[j])
 			}
 			InvSqrt(a)
-			assert.Equal(correct[1:], a[1:], "i = %d, %v", i, RangeFloat64(0, i))
+			assert.Equal(correct[1:], a[1:], "i = %d, %v", i, Range(0, i))
 			if !math.IsInf(a[0], 0) {
 				t.Error("1/0 should be +Inf or -Inf")
 			}
