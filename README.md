@@ -1,3 +1,34 @@
-# vec  [![GoDoc](https://godoc.org/github.com/chewxy/vecf64?status.svg)](https://godoc.org/github.com/chewxy/vecf64) [![Build Status](https://travis-ci.org/chewxy/vecf64.svg?branch=master)](https://travis-ci.org/chewxy/vecf64) [![Coverage Status](https://coveralls.io/repos/github/chewxy/vecf64/badge.svg?branch=master)](https://coveralls.io/github/chewxy/vecf64?branch=master)
+# vecf64  [![GoDoc](https://godoc.org/github.com/chewxy/vecf64?status.svg)](https://godoc.org/github.com/chewxy/vecf64) [![Build Status](https://travis-ci.org/chewxy/vecf64.svg?branch=master)](https://travis-ci.org/chewxy/vecf64) [![Coverage Status](https://coveralls.io/repos/github/chewxy/vecf64/badge.svg?branch=master)](https://coveralls.io/github/chewxy/vecf64?branch=master)
 
-package vecf64 provides common functions and methods for slices of float64
+Package vecf64 provides common functions and methods for slices of float64
+
+# Installation
+
+`go get -u github.com/chewxy/vecf64`
+
+This package uses the standard library only. For testing this package uses [testify/assert](https://github.com/stretchr/testify), which is licenced with a [MIT/BSD-like licence](https://github.com/stretchr/testify/blob/master/LICENSE)
+
+# Build Tags
+
+The point of this package is to provide operations that are accelerated by SIMD. However, this pakcage by default does not use SIMD. To use SIMD, build tags must be used. The supported build tags are `sse` and `avx`. Here's an example on how to use them:
+
+* [SSE](https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions) - `go build -tags='sse' ...
+* [AVX](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions) - `go build -tags='avx' ...
+
+# Contributing
+
+Contributions are welcome. The typical process works like this:
+
+1. File an issue  on the topic you want to contribute
+2. Fork this repo
+3. Add your contribution
+4. Make a pull request
+5. The pull request will be merged once tests pass, and code reviewed.
+
+## Pull Requests
+
+This package is very well tested. Please ensure tests are written if any new features are added. If bugs are fixed, please add the bugs to the tests as well.
+
+# Licence
+
+Package vecf64 is licenced under the MIT licence.
