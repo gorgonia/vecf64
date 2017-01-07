@@ -23,9 +23,9 @@ import (
 func TestDiv(t *testing.T) {
 	assert := assert.New(t)
 
-	a := RangeFloat64(0, niceprime-1)
+	a := Range(0, niceprime-1)
 
-	correct := RangeFloat64(0, niceprime-1)
+	correct := Range(0, niceprime-1)
 	for i := range correct {
 		correct[i] = correct[i] / correct[i]
 	}
@@ -33,7 +33,7 @@ func TestDiv(t *testing.T) {
 	assert.Equal(correct[1:], a[1:])
 	assert.Equal(true, math.IsNaN(a[0]), "a[0] is: %v", a[0])
 
-	b := RangeFloat64(niceprime, 2*niceprime-1)
+	b := Range(niceprime, 2*niceprime-1)
 	for i := range correct {
 		correct[i] = a[i] / b[i]
 	}
@@ -45,7 +45,7 @@ func TestDiv(t *testing.T) {
 	/* Weird Corner Cases*/
 
 	for i := 1; i < 65; i++ {
-		a = RangeFloat64(0, i)
+		a = Range(0, i)
 		var testAlign bool
 		addr := &a[0]
 		u := uint(uintptr(unsafe.Pointer(addr)))
@@ -54,7 +54,7 @@ func TestDiv(t *testing.T) {
 		}
 
 		if testAlign {
-			b = RangeFloat64(i, 2*i)
+			b = Range(i, 2*i)
 			correct = make([]float64, i)
 			for j := range correct {
 				correct[j] = a[j] / b[j]
@@ -69,9 +69,9 @@ func TestDiv(t *testing.T) {
 func TestSqrt(t *testing.T) {
 	assert := assert.New(t)
 
-	a := RangeFloat64(0, niceprime-1)
+	a := Range(0, niceprime-1)
 
-	correct := RangeFloat64(0, niceprime-1)
+	correct := Range(0, niceprime-1)
 	for i, v := range correct {
 		correct[i] = math.Sqrt(v)
 	}
@@ -90,7 +90,7 @@ func TestSqrt(t *testing.T) {
 
 	/* Weird Corner Cases*/
 	for i := 1; i < 65; i++ {
-		a = RangeFloat64(0, i)
+		a = Range(0, i)
 		var testAlign bool
 		addr := &a[0]
 		u := uint(uintptr(unsafe.Pointer(addr)))
@@ -112,9 +112,9 @@ func TestSqrt(t *testing.T) {
 func TestInvSqrt(t *testing.T) {
 
 	assert := assert.New(t)
-	a := RangeFloat64(0, niceprime-1)
+	a := Range(0, niceprime-1)
 
-	correct := RangeFloat64(0, niceprime-1)
+	correct := Range(0, niceprime-1)
 	for i, v := range correct {
 		correct[i] = 1.0 / math.Sqrt(v)
 	}
@@ -127,7 +127,7 @@ func TestInvSqrt(t *testing.T) {
 	// Weird Corner Cases
 
 	for i := 1; i < 65; i++ {
-		a = RangeFloat64(0, i)
+		a = Range(0, i)
 		var testAlign bool
 		addr := &a[0]
 		u := uint(uintptr(unsafe.Pointer(addr)))
@@ -141,7 +141,7 @@ func TestInvSqrt(t *testing.T) {
 				correct[j] = 1.0 / math.Sqrt(a[j])
 			}
 			InvSqrt(a)
-			assert.Equal(correct[1:], a[1:], "i = %d, %v", i, RangeFloat64(0, i))
+			assert.Equal(correct[1:], a[1:], "i = %d, %v", i, Range(0, i))
 			if !math.IsInf(a[0], 0) {
 				t.Error("1/0 should be +Inf or -Inf")
 			}
@@ -158,8 +158,8 @@ func _vanillaVecAdd(a, b []float64) {
 }
 
 func BenchmarkVecAdd(b *testing.B) {
-	x := RangeFloat64(0, niceprime)
-	y := RangeFloat64(niceprime, 2*niceprime)
+	x := Range(0, niceprime)
+	y := Range(niceprime, 2*niceprime)
 
 	for n := 0; n < b.N; n++ {
 		Add(x, y)
@@ -167,8 +167,8 @@ func BenchmarkVecAdd(b *testing.B) {
 }
 
 func BenchmarkVanillaVecAdd(b *testing.B) {
-	x := RangeFloat64(0, niceprime)
-	y := RangeFloat64(niceprime, 2*niceprime)
+	x := Range(0, niceprime)
+	y := Range(niceprime, 2*niceprime)
 
 	for n := 0; n < b.N; n++ {
 		_vanillaVecAdd(x, y)
@@ -182,8 +182,8 @@ func _vanillaVecSub(a, b []float64) {
 }
 
 func BenchmarkVecSub(b *testing.B) {
-	x := RangeFloat64(0, niceprime)
-	y := RangeFloat64(niceprime, 2*niceprime)
+	x := Range(0, niceprime)
+	y := Range(niceprime, 2*niceprime)
 
 	for n := 0; n < b.N; n++ {
 		Sub(x, y)
@@ -191,8 +191,8 @@ func BenchmarkVecSub(b *testing.B) {
 }
 
 func BenchmarkVanillaVecSub(b *testing.B) {
-	x := RangeFloat64(0, niceprime)
-	y := RangeFloat64(niceprime, 2*niceprime)
+	x := Range(0, niceprime)
+	y := Range(niceprime, 2*niceprime)
 
 	for n := 0; n < b.N; n++ {
 		_vanillaVecSub(x, y)
@@ -206,8 +206,8 @@ func _vanillaVecMul(a, b []float64) {
 }
 
 func BenchmarkVecMul(b *testing.B) {
-	x := RangeFloat64(0, niceprime)
-	y := RangeFloat64(niceprime, 2*niceprime)
+	x := Range(0, niceprime)
+	y := Range(niceprime, 2*niceprime)
 
 	for n := 0; n < b.N; n++ {
 		Mul(x, y)
@@ -215,8 +215,8 @@ func BenchmarkVecMul(b *testing.B) {
 }
 
 func BenchmarkVanillaVecMul(b *testing.B) {
-	x := RangeFloat64(0, niceprime)
-	y := RangeFloat64(niceprime, 2*niceprime)
+	x := Range(0, niceprime)
+	y := Range(niceprime, 2*niceprime)
 
 	for n := 0; n < b.N; n++ {
 		_vanillaVecMul(x, y)
@@ -230,8 +230,8 @@ func _vanillaVecDiv(a, b []float64) {
 }
 
 func BenchmarkVecDiv(b *testing.B) {
-	x := RangeFloat64(0, niceprime)
-	y := RangeFloat64(niceprime, 2*niceprime)
+	x := Range(0, niceprime)
+	y := Range(niceprime, 2*niceprime)
 
 	for n := 0; n < b.N; n++ {
 		Div(x, y)
@@ -239,8 +239,8 @@ func BenchmarkVecDiv(b *testing.B) {
 }
 
 func BenchmarkVanillaVecDiv(b *testing.B) {
-	x := RangeFloat64(0, niceprime)
-	y := RangeFloat64(niceprime, 2*niceprime)
+	x := Range(0, niceprime)
+	y := Range(niceprime, 2*niceprime)
 
 	for n := 0; n < b.N; n++ {
 		_vanillaVecDiv(x, y)
@@ -254,7 +254,7 @@ func _vanillaVecSqrt(a []float64) {
 }
 
 func BenchmarkVecSqrt(b *testing.B) {
-	x := RangeFloat64(0, niceprime)
+	x := Range(0, niceprime)
 
 	for n := 0; n < b.N; n++ {
 		Sqrt(x)
@@ -262,7 +262,7 @@ func BenchmarkVecSqrt(b *testing.B) {
 }
 
 func BenchmarkVanillaVecSqrt(b *testing.B) {
-	x := RangeFloat64(0, niceprime)
+	x := Range(0, niceprime)
 
 	for n := 0; n < b.N; n++ {
 		_vanillaVecSqrt(x)
@@ -276,7 +276,7 @@ func _vanillaVecInverseSqrt(a []float64) {
 }
 
 func BenchmarkVecInvSqrt(b *testing.B) {
-	x := RangeFloat64(0, niceprime)
+	x := Range(0, niceprime)
 
 	for n := 0; n < b.N; n++ {
 		InvSqrt(x)
@@ -284,7 +284,7 @@ func BenchmarkVecInvSqrt(b *testing.B) {
 }
 
 func BenchmarkVanillaVecInvSqrt(b *testing.B) {
-	x := RangeFloat64(0, niceprime)
+	x := Range(0, niceprime)
 
 	for n := 0; n < b.N; n++ {
 		_vanillaVecInverseSqrt(x)
