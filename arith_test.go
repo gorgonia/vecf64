@@ -165,13 +165,13 @@ func TestScale(t *testing.T) {
 	assert.Equal(t, correct, a)
 }
 
-func TestDivBy(t *testing.T) {
+func TestDivR(t *testing.T) {
 	a := []float64{0, 1, 2, 3, 4}
 	correct := make([]float64, 5)
 	for i := range correct {
 		correct[i] = 5 / a[i]
 	}
-	DivBy(5, a)
+	DivR(5, a)
 	assert.Equal(t, correct, a)
 }
 
@@ -186,7 +186,7 @@ func TestTrans(t *testing.T) {
 	assert.Equal(t, correct, data)
 }
 
-func TestTransFrom(t *testing.T) {
+func TestTransR(t *testing.T) {
 	a := []float64{1, 2, 3, 4}
 
 	correct := make([]float64, len(a))
@@ -194,11 +194,11 @@ func TestTransFrom(t *testing.T) {
 		correct[i] = float64(1) - a[i]
 	}
 
-	TransFrom(1, a)
+	TransR(1, a)
 	assert.Equal(t, correct, a)
 }
 
-func TestPower(t *testing.T) {
+func TestPowOf(t *testing.T) {
 	a := []float64{1, 2, 3, 4}
 
 	correct := make([]float64, len(a))
@@ -206,11 +206,11 @@ func TestPower(t *testing.T) {
 		correct[i] = math.Pow(a[i], 5)
 	}
 
-	Power(5, a)
+	PowOf(5, a)
 	assert.Equal(t, correct, a)
 }
 
-func TestPowerFrom(t *testing.T) {
+func TestPowOfR(t *testing.T) {
 	a := []float64{1, 2, 3, 4}
 
 	correct := make([]float64, len(a))
@@ -218,7 +218,7 @@ func TestPowerFrom(t *testing.T) {
 		correct[i] = math.Pow(5, a[i])
 	}
 
-	PowerFrom(5, a)
+	PowOfR(5, a)
 	assert.Equal(t, correct, a)
 }
 
