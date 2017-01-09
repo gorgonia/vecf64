@@ -161,40 +161,59 @@ func TestScale(t *testing.T) {
 	for i := range correct {
 		correct[i] = a[i] * 5
 	}
-	Scale(5, a)
+	Scale(a, 5)
 	assert.Equal(t, correct, a)
 }
 
-func TestDivR(t *testing.T) {
-	a := []float64{0, 1, 2, 3, 4}
-	correct := make([]float64, 5)
+func TestScaleInv(t *testing.T) {
+	a := []float64{0, 1, 2, 4, 6}
+
+	correct := make([]float64, len(a))
 	for i := range correct {
-		correct[i] = 5 / a[i]
+		correct[i] = a[i] / 2
 	}
-	DivR(5, a)
+	ScaleInv(a, 2)
+	assert.Equal(t, correct, a)
+}
+
+func TestScaleInvR(t *testing.T) {
+	a := []float64{0, 1, 2, 4, 6}
+	correct := make([]float64, len(a))
+	for i := range correct {
+		correct[i] = 2 / a[i]
+	}
+	ScaleInvR(a, 2)
 	assert.Equal(t, correct, a)
 }
 
 func TestTrans(t *testing.T) {
-	data := []float64{1, 2, 3, 4}
+	a := []float64{1, 2, 3, 4}
 	correct := make([]float64, 4)
 	for i := range correct {
-		correct[i] = data[i] + float64(1)
+		correct[i] = a[i] + float64(1)
 	}
-
-	Trans(1, data)
-	assert.Equal(t, correct, data)
+	Trans(a, 1)
+	assert.Equal(t, correct, a)
 }
 
-func TestTransR(t *testing.T) {
+func TestTransInv(t *testing.T) {
+	a := []float64{1, 2, 3, 4}
+	correct := make([]float64, 4)
+	for i := range correct {
+		correct[i] = a[i] - float64(1)
+	}
+	TransInv(a, 1)
+	assert.Equal(t, correct, a)
+}
+
+func TestTransInvR(t *testing.T) {
 	a := []float64{1, 2, 3, 4}
 
 	correct := make([]float64, len(a))
 	for i := range correct {
 		correct[i] = float64(1) - a[i]
 	}
-
-	TransR(1, a)
+	TransInvR(a, 1)
 	assert.Equal(t, correct, a)
 }
 
@@ -205,8 +224,7 @@ func TestPowOf(t *testing.T) {
 	for i := range correct {
 		correct[i] = math.Pow(a[i], 5)
 	}
-
-	PowOf(5, a)
+	PowOf(a, 5)
 	assert.Equal(t, correct, a)
 }
 
@@ -217,8 +235,7 @@ func TestPowOfR(t *testing.T) {
 	for i := range correct {
 		correct[i] = math.Pow(5, a[i])
 	}
-
-	PowOfR(5, a)
+	PowOfR(a, 5)
 	assert.Equal(t, correct, a)
 }
 

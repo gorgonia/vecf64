@@ -22,32 +22,44 @@ func Pow(a, b []float64) {
 }
 
 // Scale multiplies all values in the slice by the scalar. It performs elementwise
-// 		s * a̅
-func Scale(s float64, a []float64) {
+// 		a̅ * s
+func Scale(a []float64, s float64) {
 	for i, v := range a {
 		a[i] = v * s
 	}
 }
 
-/// DivR divides all numbers in the slice by a scalar
-// 		s/a̅
-func DivR(s float64, a []float64) {
+// ScaleInv divides all values in the slice by the scalar. It performs elementwise
+// 		a̅ / s
+func ScaleInv(a []float64, s float64) {
+	Scale(a, 1/s)
+}
+
+/// ScaleInvR divides all numbers in the slice by a scalar
+// 		s / a̅
+func ScaleInvR(a []float64, s float64) {
 	for i, v := range a {
 		a[i] = s / v
 	}
 }
 
 // Trans adds all the values in the slice by a scalar
-// 		s + a̅
-func Trans(s float64, a []float64) {
+// 		a̅ + s
+func Trans(a []float64, s float64) {
 	for i, v := range a {
 		a[i] = v + s
 	}
 }
 
-// TransR subtracts all the numbers in a slice from a scalar
+// TransInv subtracts all the values in the slice by a scalar
+//		a̅ - s
+func TransInv(a []float64, s float64) {
+	Trans(a, -s)
+}
+
+// TransInvR subtracts all the numbers in a slice from a scalar
 //	 s - a̅
-func TransR(s float64, a []float64) {
+func TransInvR(a []float64, s float64) {
 	for i, v := range a {
 		a[i] = s - v
 	}
@@ -55,7 +67,7 @@ func TransR(s float64, a []float64) {
 
 // PowOf performs elementwise
 //		a̅ ^ s
-func PowOf(s float64, a []float64) {
+func PowOf(a []float64, s float64) {
 	for i, v := range a {
 		a[i] = math.Pow(v, s)
 	}
@@ -63,7 +75,7 @@ func PowOf(s float64, a []float64) {
 
 // PowOfR performs elementwise
 //		s ^ a̅
-func PowOfR(s float64, a []float64) {
+func PowOfR(a []float64, s float64) {
 	for i, v := range a {
 		a[i] = math.Pow(s, v)
 	}
