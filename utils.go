@@ -1,6 +1,6 @@
 package vecf64
 
-// Range is inclusive of Start AND End
+// Range is a function to create arithmetic progressions of float32
 func Range(start, end int) []float64 {
 	size := end - start
 	incr := true
