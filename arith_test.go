@@ -11,18 +11,18 @@ import (
 // 1049 is actually a prime, so it cannot be divisible by any other number
 // This is a good way to test that the remainder part of the Add/Sub/Mul/Div/Pow works
 const (
-	niceprime = 37
+	// niceprime = 37
 	// niceprime = 1049
-	// niceprime = 597929
+	niceprime = 597929
 	// niceprime = 1299827 // because sometimes I feel like being an idiot
 )
 
 func TestAdd(t *testing.T) {
 	assert := assert.New(t)
 
-	a := Range(0, niceprime-1)
+	a := Range(0, niceprime)
 
-	correct := Range(0, niceprime-1)
+	correct := Range(0, niceprime)
 	for i := range correct {
 		correct[i] = correct[i] + correct[i]
 	}
@@ -30,7 +30,7 @@ func TestAdd(t *testing.T) {
 	Add(a, a)
 	assert.Equal(correct, a)
 
-	b := Range(niceprime, 2*niceprime-1)
+	b := Range(niceprime, 2*niceprime)
 	for i := range correct {
 		correct[i] = a[i] + b[i]
 	}
@@ -63,13 +63,13 @@ func TestAdd(t *testing.T) {
 func TestSub(t *testing.T) {
 	assert := assert.New(t)
 
-	a := Range(0, niceprime-1)
+	a := Range(0, niceprime)
 
-	correct := make([]float64, niceprime-1)
+	correct := make([]float64, niceprime)
 	Sub(a, a)
 	assert.Equal(correct, a)
 
-	b := Range(niceprime, 2*niceprime-1)
+	b := Range(niceprime, 2*niceprime)
 	for i := range correct {
 		correct[i] = a[i] - b[i]
 	}
@@ -102,16 +102,16 @@ func TestSub(t *testing.T) {
 func TestMul(t *testing.T) {
 	assert := assert.New(t)
 
-	a := Range(0, niceprime-1)
+	a := Range(0, niceprime)
 
-	correct := Range(0, niceprime-1)
+	correct := Range(0, niceprime)
 	for i := range correct {
 		correct[i] = correct[i] * correct[i]
 	}
 	Mul(a, a)
 	assert.Equal(correct, a)
 
-	b := Range(niceprime, 2*niceprime-1)
+	b := Range(niceprime, 2*niceprime)
 	for i := range correct {
 		correct[i] = a[i] * b[i]
 	}

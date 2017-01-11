@@ -1,4 +1,4 @@
-// Package vecf64 provides common functions and methods for slices of float64
+// Package vecf64 provides common functions and methods for slices of float64.
 //
 // Name
 //
@@ -38,4 +38,11 @@
 */
 // You may note that for the []float64 - float64 binary operations, the scalar (float64) is always the first operand. In operations
 // that are not commutative, an additional function is provided, suffixed with "R" (for reverse)
+//
+// Range Check and BCE
+//
+// This package does not provide range checking. If indices are out of range, the functions will panic. This package should play well with BCE.
+//
+// TODO: provide SIMD vectorization for Incr and []float32-float64 functions.
+// Pull requests accepted
 package vecf64
