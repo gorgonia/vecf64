@@ -247,7 +247,7 @@ func TestMax(t *testing.T) {
 	Max(a, b)
 	assert.Equal(t, correct, a)
 
-	a = []float64{2}
+	b = []float64{2}
 	f := func() {
 		Max(a, b)
 	}
@@ -262,7 +262,7 @@ func TestMin(t *testing.T) {
 	Min(a, b)
 	assert.Equal(t, correct, a)
 
-	a = []float64{2}
+	b = []float64{2}
 	f := func() {
 		Min(a, b)
 	}
