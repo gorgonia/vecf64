@@ -6,6 +6,8 @@ import "math"
 
 // Add performs a̅ + b̅. a̅ will be clobbered
 func Add(a, b []float64) {
+	a = a[:len(a)]
+	b = b[:len(a)]
 	for i, v := range a {
 		a[i] = v + b[i]
 	}
@@ -13,6 +15,8 @@ func Add(a, b []float64) {
 
 // Sub performs a̅ - b̅. a̅ will be clobbered
 func Sub(a, b []float64) {
+	a = a[:len(a)]
+	b = b[:len(a)]
 	for i, v := range a {
 		a[i] = v - b[i]
 	}
@@ -20,6 +24,8 @@ func Sub(a, b []float64) {
 
 // Mul performs a̅ × b̅. a̅ will be clobbered
 func Mul(a, b []float64) {
+	a = a[:len(a)]
+	b = b[:len(a)]
 	for i, v := range a {
 		a[i] = v * b[i]
 	}
@@ -27,6 +33,8 @@ func Mul(a, b []float64) {
 
 // Div performs a̅ ÷ b̅. a̅ will be clobbered
 func Div(a, b []float64) {
+	a = a[:len(a)]
+	b = b[:len(a)]
 	for i, v := range a {
 		if b[i] == 0 {
 			a[i] = math.Inf(0)

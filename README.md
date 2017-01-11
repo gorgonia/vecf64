@@ -15,6 +15,11 @@ The point of this package is to provide operations that are accelerated by SIMD.
 * [SSE](https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions) - `go build -tags='sse' ...
 * [AVX](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions) - `go build -tags='avx' ...
 
+### Why are there so many `a = a[:len(a)]` lines?
+This is mainly done to eliminate bounds checking in a loop. The idea is the bounds of the slice is checked early on, and if need be, panics early. Then if everything is normal, there won't be bounds checking while in the loop.
+
+To check for boundschecking and bounds check elimination (an amazing feature that landed in Go 1.7), compile your programs with `-gcflags='-d=ssa/check_bce/debug=1'`. 
+
 # Contributing
 
 Contributions are welcome. The typical process works like this:
