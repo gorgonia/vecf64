@@ -66,6 +66,17 @@ func IncrPow(a, b, incr []float64) {
 	}
 }
 
+// IncrMod performs a̅ % b̅ then adds it to incr
+func IncrMod(a, b, incr []float64) {
+	a = a[:len(a)]
+	b = b[:len(a)]
+	incr = incr[:len(a)]
+
+	for i, v := range a {
+		incr[i] += math.Mod(v, b[i])
+	}
+}
+
 // Scale multiplies all values in the slice by the scalar and then increments the incr slice
 // 		incr += a̅ * s
 func IncrScale(a []float64, s float64, incr []float64) {
