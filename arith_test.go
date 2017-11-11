@@ -298,7 +298,7 @@ func TestMinOf(t *testing.T) {
 	correct := float64(0)
 	got := MinOf(a)
 	if got != correct {
-		t.Error("Expected %f. Got %v instead", correct, got)
+		t.Errorf("Expected %f. Got %v instead", correct, got)
 	}
 
 	a = []float64{}
@@ -313,7 +313,7 @@ func TestArgmax(t *testing.T) {
 	correct := 3
 	got := Argmax(a)
 	if got != correct {
-		t.Error("Expected argmax to be %v. Got %v instead", correct, got)
+		t.Errorf("Expected argmax to be %v. Got %v instead", correct, got)
 	}
 
 	a = []float64{math.Inf(-1), 2, 3, 4}
