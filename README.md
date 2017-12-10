@@ -1,10 +1,10 @@
-# vecf64  [![GoDoc](https://godoc.org/github.com/chewxy/vecf64?status.svg)](https://godoc.org/github.com/chewxy/vecf64) [![Build Status](https://travis-ci.org/chewxy/vecf64.svg?branch=master)](https://travis-ci.org/chewxy/vecf64) [![Coverage Status](https://coveralls.io/repos/github/chewxy/vecf64/badge.svg?branch=master)](https://coveralls.io/github/chewxy/vecf64?branch=master)
+# vecf64  [![GoDoc](https://godoc.org/gorgonia.org/vecf64?status.svg)](https://godoc.org/gorgonia.org/vecf64) [![Build Status](https://travis-ci.org/chewxy/vecf64.svg?branch=master)](https://travis-ci.org/chewxy/vecf64) [![Coverage Status](https://coveralls.io/repos/github/chewxy/vecf64/badge.svg?branch=master)](https://coveralls.io/github/chewxy/vecf64?branch=master)
 
 Package vecf64 provides common functions and methods for slices of float64
 
 # Installation
 
-`go get -u github.com/chewxy/vecf64`
+`go get -u gorgonia.org/vecf64`
 
 This package uses the standard library only. For testing this package uses [testify/assert](https://github.com/stretchr/testify), which is licenced with a [MIT/BSD-like licence](https://github.com/stretchr/testify/blob/master/LICENSE)
 
