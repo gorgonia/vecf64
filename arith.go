@@ -5,7 +5,6 @@ import "math"
 // Pow performs  elementwise
 //		a̅ ^ b̅
 func Pow(a, b []float64) {
-	a = a[:len(a)]
 	b = b[:len(a)]
 	for i, v := range a {
 		switch b[i] {
@@ -24,7 +23,6 @@ func Pow(a, b []float64) {
 }
 
 func Mod(a, b []float64) {
-	a = a[:len(a)]
 	b = b[:len(a)]
 	for i, v := range a {
 		a[i] = math.Mod(v, b[i])
@@ -93,7 +91,6 @@ func PowOfR(a []float64, s float64) {
 
 // Max takes two slices, a̅ + b̅, and compares them elementwise. The highest value is put into a̅.
 func Max(a, b []float64) {
-	a = a[:len(a)]
 	b = b[:len(a)]
 
 	for i, v := range a {
@@ -106,7 +103,6 @@ func Max(a, b []float64) {
 
 // Min takes two slices, a̅ + b̅ and compares them elementwise. The lowest value is put into a̅.
 func Min(a, b []float64) {
-	a = a[:len(a)]
 	b = b[:len(a)]
 
 	for i, v := range a {
