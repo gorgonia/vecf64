@@ -29,6 +29,7 @@ Contributions are welcome. The typical process works like this:
 3. Add your contribution
 4. Make a pull request
 5. The pull request will be merged once tests pass, and code reviewed.
+6. Add your name (if it hasn't already been added to CONTRIBUTORS.md)
 
 ## Pull Requests
 
