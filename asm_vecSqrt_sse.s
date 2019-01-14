@@ -41,7 +41,3 @@ remainder1:
 
 done:
 	RET
-
-panic:
-	CALL runtime·panicindex(SB)
-	RET

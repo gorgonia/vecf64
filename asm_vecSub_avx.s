@@ -22,7 +22,6 @@ These are the registers I use to store the relevant information:
 	DI - used to store the top element of slice B. Incremented every loop
 	AX - len(a) is stored in here. Volatile register. AX is also used as the "working" count of the length that is decremented.
 	AX - len(a) is stored in here. AX is also used as the "working" count of the length that is decremented.
-	BX - len(b) is stored in here. Used to compare against AX at the beginning to make sure both a and b have the same lengths
 	Y0, Y1 - YMM registers. 
 	X0, X1 - XMM registers.
 
@@ -84,18 +83,13 @@ Citation
 */
 #include "textflag.h"
 
-// func Sub(a, b []float64)
-TEXT ·Sub(SB), NOSPLIT, $0
+// func subAsm(a, b []float64)
+TEXT ·subAsm(SB), NOSPLIT, $0
 	MOVQ a_data+0(FP), SI
 	MOVQ b_data+24(FP), DI // use destination index register for this
 
 	MOVQ a_len+8(FP), AX  // len(a) into AX
-	MOVQ b_len+32(FP), BX // len(b) into BX
 	MOVQ AX, AX           // len(a) into AX for working purposes
-
-	// check if they're the same length
-	CMPQ AX, BX
-	JNE  panic  // jump to panic if not the same length. TOOD: return bloody errors
 
 	// each ymm register can take up to 4 float64s.
 	SUBQ $4, AX
@@ -165,8 +159,3 @@ remainder1:
 
 done:
 	RET
-
-panic:
-	CALL runtime·panicindex(SB)
-	RET
-
