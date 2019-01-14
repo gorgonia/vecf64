@@ -23,7 +23,6 @@ These are the registers I use to store the relevant information:
 	SI - Used to store the top element of slice A (index 0). This register is incremented every loop
 	DI - used to store the top element of slice B. Incremented every loop
 	AX - len(a) is stored in here. AX is also used as the "working" count of the length that is decremented.
-	BX - len(b) is stored in here. Used to compare against AX at the beginning to make sure both a and b have the same lengths
 	Y0, Y1 - YMM registers. 
 	X0, X1 - XMM registers.
 
@@ -87,17 +86,12 @@ Citation
 */
 #include "textflag.h"
 
-// func Div(a, b []float64)
-TEXT ·Div(SB), NOSPLIT, $0
+// func divAsm(a, b []float64)
+TEXT ·divAsm(SB), NOSPLIT, $0
 	MOVQ a_data+0(FP), SI
 	MOVQ b_data+24(FP), DI // use destination index register for this
 
 	MOVQ a_len+8(FP), AX  // len(a) into AX - +8, because first 8 is pointer, second 8 is length, third 8 is cap
-	MOVQ b_len+32(FP), BX // len(b) into BX
-
-	// check if they're the same length
-	CMPQ AX, BX
-	JNE  panic  // jump to panic if not the same length. TOOD: return bloody errors
 
 	SUBQ $4, AX
 	JL   remainder
@@ -167,8 +161,3 @@ remainder1:
 
 done:
 	RET
-
-panic:
-	CALL runtime·panicindex(SB)
-	RET
-
