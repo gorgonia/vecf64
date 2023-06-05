@@ -2,8 +2,18 @@ package vecf64
 
 import "math"
 
+func AddRecv(a, b, c []float64) {
+	a = a[:]
+	b = b[:len(a)]
+	c = c[:len(a)]
+	for i, v := range a {
+		c[i] = v + b[i]
+	}
+}
+
 // Pow performs  elementwise
-//		a̅ ^ b̅
+//
+//	a̅ ^ b̅
 func Pow(a, b []float64) {
 	b = b[:len(a)]
 	for i, v := range a {
@@ -30,7 +40,8 @@ func Mod(a, b []float64) {
 }
 
 // Scale multiplies all values in the slice by the scalar. It performs elementwise
-// 		a̅ * s
+//
+//	a̅ * s
 func Scale(a []float64, s float64) {
 	for i, v := range a {
 		a[i] = v * s
@@ -38,13 +49,15 @@ func Scale(a []float64, s float64) {
 }
 
 // ScaleInv divides all values in the slice by the scalar. It performs elementwise
-// 		a̅ / s
+//
+//	a̅ / s
 func ScaleInv(a []float64, s float64) {
 	Scale(a, 1/s)
 }
 
-/// ScaleInvR divides all numbers in the slice by a scalar
-// 		s / a̅
+// / ScaleInvR divides all numbers in the slice by a scalar
+//
+//	s / a̅
 func ScaleInvR(a []float64, s float64) {
 	for i, v := range a {
 		a[i] = s / v
@@ -52,7 +65,8 @@ func ScaleInvR(a []float64, s float64) {
 }
 
 // Trans adds all the values in the slice by a scalar
-// 		a̅ + s
+//
+//	a̅ + s
 func Trans(a []float64, s float64) {
 	for i, v := range a {
 		a[i] = v + s
@@ -60,13 +74,15 @@ func Trans(a []float64, s float64) {
 }
 
 // TransInv subtracts all the values in the slice by a scalar
-//		a̅ - s
+//
+//	a̅ - s
 func TransInv(a []float64, s float64) {
 	Trans(a, -s)
 }
 
 // TransInvR subtracts all the numbers in a slice from a scalar
-//	 s - a̅
+//
+//	s - a̅
 func TransInvR(a []float64, s float64) {
 	for i, v := range a {
 		a[i] = s - v
@@ -74,7 +90,8 @@ func TransInvR(a []float64, s float64) {
 }
 
 // PowOf performs elementwise
-//		a̅ ^ s
+//
+//	a̅ ^ s
 func PowOf(a []float64, s float64) {
 	for i, v := range a {
 		a[i] = math.Pow(v, s)
@@ -82,7 +99,8 @@ func PowOf(a []float64, s float64) {
 }
 
 // PowOfR performs elementwise
-//		s ^ a̅
+//
+//	s ^ a̅
 func PowOfR(a []float64, s float64) {
 	for i, v := range a {
 		a[i] = math.Pow(s, v)

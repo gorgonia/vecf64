@@ -1,3 +1,4 @@
+//go:build sse || avx
 // +build sse avx
 
 package vecf64
